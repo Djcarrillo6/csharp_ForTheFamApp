@@ -1,0 +1,43 @@
+@model ForumPost
+
+<h2 class="text-center">
+  Edit ForumPost @Model.ForumPostId
+</h2>
+
+<form asp-controller="ForumPosts" asp-action="UpdateForumPost" asp-route-id="@Model.ForumPostId" method="POST" 
+>
+
+
+<div class="form-group">
+    <b><label asp-for="ForumMsg"></label></b>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="ForumMsg"
+    ></span>
+    <textarea class="form-control" asp-for="ForumMsg">
+      @Model.ForumMsg
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="ImgUrl"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="ImgUrl"
+    >
+    </span>
+    <input class="form-control" asp-for="ImgUrl" />
+  </div>
+
+  <button class="btn btn-success">Save</button>
+  <a class="btn btn-info" asp-controller="ForumPosts" asp-action="FamForum">
+    Cancel
+  </a>
+
+</form>
+
+
+
+
+
+

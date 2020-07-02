@@ -1,0 +1,93 @@
+@using ForTheFamApp.Models
+@model List<Post>
+
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/DashBoardStyleSheet.css" type="text/css">
+</head>
+<div id="wrapper">
+  
+      <div id="dash-body" >
+          <h1>Welcome,  @Context.Session.GetString("FullName")</h1>
+          <hr>
+          <br>
+          
+          <h3>My Product Request Dashboard</h3>
+          @foreach(Post post in Model)
+          {
+              if((int)uid == post.UserId){
+              <table id="post-b1" class="table table-sm table-light">
+            <thead>
+              <tr>
+                <th scope="col">ID#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Amazon URL</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                    <a asp-controller="ProductPosts" asp-action="Details" asp-route-id="@post.PostId">@post.PostId</a>
+                </th>
+                <td>
+                    <a asp-controller="ProductPosts" asp-action="Details" asp-route-id="@post.PostId">@post.ProductName</a>
+                </td>
+                <td>@post.AmazonProductUrl</td>
+                <td>[staus]</td>
+                <td>
+                    <a asp-controller="Posts" asp-action="Edit" asp-route-id="@post.PostId" class="btn btn-info" >Edit</a>
+                      <a asp-controller="Posts" asp-action="Delete" asp-route-id="@post.PostId" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+              }
+          
+          }
+          
+          <hr>
+          <hr>
+          
+          <h1>TheFam's Request List</h1>
+          @foreach(Post post in Model) 
+          
+          {
+              <table id="post-b2" class="table table-sm table-light">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Amazon URL</th>
+                <th scope="col">Status</th>
+                <th scope="col">Likes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                    <a asp-controller="ProfilePosts" asp-action="Profile" asp-route-id="@post.UserId">@post.Author.FullName()</a>
+                </th>
+                <td>
+                    <a asp-controller="ProductPosts" asp-action="Details" asp-route-id="@post.PostId">@post.ProductName</a>
+                </td>
+                <td>@post.AmazonProductUrl</td>
+                <td>[staus]</td>
+                <td>Like Counter:(0)</td>
+              </tr>
+            </tbody>
+          </table>
+          }
+      
+      </div>
+</div>
+
+
+
+
+

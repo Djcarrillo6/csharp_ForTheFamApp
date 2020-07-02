@@ -1,0 +1,123 @@
+@model User
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/ProfileStyleSheet.css" type="text/css">
+</head>
+
+
+<div class="text-center">
+  <h2>
+    @Model.FullName()'s Profile
+  </h2>
+  @* <p>Member since: @Model.CreatedAt</p> *@
+</div>
+
+<hr>
+<body>
+  
+  @foreach (Post post in Model.Posts)
+  {
+
+        <div class="card mx-auto mb-3 w-78">
+    
+                    <div class="card-header">
+                      <h5 class="card-title">
+                        @post.ProductName
+                      </h5>
+                    </div>
+          
+                    <div id="postdiv" class="card-body">
+                      <div class="row">
+                          <p>@post.Author.FullName() says "@post.Body" 
+                          </p>
+                          <div id="content" class="col-md-2">
+                                                
+                        <img id="imgdiv" src="@post.ImgUrl" class="card-img" alt="...">
+                          </div>
+                      </div>
+                    </div>
+                    @if((int)uid == post.UserId){ 
+                    <div class="card-footer">
+                      <a 
+                        asp-controller="Posts"
+                        asp-action="Details"
+                        asp-route-id="@post.PostId"
+                        class="btn btn-info">
+                        View Details
+                      </a>
+                      <a 
+                        asp-controller="Posts" asp-action="Edit" asp-route-id="@post.PostId" class="btn btn-warning">
+                        Edit
+                      </a>
+                      <a 
+                        asp-controller="Posts"
+                        asp-action="Delete"
+                        asp-route-id="@post.PostId"
+                        class="btn btn-danger">
+                        Delete
+                      </a>
+                    </div>
+                    }
+        </div>
+                      
+
+  
+  
+  }
+  <br>
+  <hr>
+  <h2>Post A Message on @Model.FirstName's Wall </h2>
+  
+  @foreach (ProfilePost profilepost in ViewBag.ThisUsersProfilePosts){
+    @if (profilepost.UserProfileId == profilepost.UserProfileId){
+  <div class="container">
+              <div class="row">
+                      <div class="col">
+                          <div class="card mb-3" style="max-width: 1080;">
+                          <div class="row no-gutters">
+                              <div class="col-md-4">
+                              </div>
+                              <div class="col-md-8">
+                              <div class="card-body">
+                                  <p class="card-text">@profilepost.ForumMsg</p>
+                                  <p class="card-text"><small class="text-muted">Last updated @profilepost.UpdatedAt</small>
+                                  <p>
+                                    Posted By: [still needed?]
+                                  </p>
+                                  <a 
+                                              asp-controller="ProfilePosts"
+                                              asp-action="Edit"
+                                              asp-route-id="@profilepost.ProfilePostId"
+                                              class="btn btn-warning">
+                                              Edit
+                                          </a>
+                                          <a 
+                                              asp-controller="ProfilePosts"
+                                              asp-action="Delete"
+                                              asp-route-id="@profilepost.ProfilePostId"
+                                              asp-route-returnProfileId="@Model.UserId"
+                                              class="btn btn-danger">
+                                              Delete
+                                          </a></p>
+                              </div>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+              </div>
+  </div>
+  } 
+  }
+  @{
+    ProfilePost profilePostObj = new ProfilePost();
+  }
+
+  <partial name="_NewProfilePost.cshtml" model="profilePostObj" view-data="ViewData" ></partial>
+
+</body>
+
+

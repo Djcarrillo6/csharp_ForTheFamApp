@@ -1,0 +1,34 @@
+#span1 {
+    margin-left: 10px;
+}
+
+#f-topic {
+    text-align: center;
+    color: teal;
+    font-family: cursive;
+}
+
+h2 {
+    color: rgb(251, 255, 0);
+    text-align: center;
+}
+
+#p-body {
+    text-align: center;
+    font-size: large;
+}
+
+h3 {
+    color: teal;
+}
+
+
+#commentButton {
+    float: right;
+    padding-bottom: 10px;
+}
+
+
+body {
+    background-color: cornflowerblue;
+}

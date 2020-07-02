@@ -1,0 +1,76 @@
+@* 
+  @model lowercase m to specify the data type of the view model
+  @Model capital m to access the data
+*@
+
+@model Post
+
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/DetailsStyleSheet.css" type="text/css">
+</head>
+
+
+<h2>
+    Re: #FamDiscussion #@Model.ProductName
+</h2>
+
+<body>
+  
+
+  
+    <div class="jumbotron">
+            <h3 class="display-8">Product Requested:<span id="span1">@Model.ProductName</span><h3>
+            <p class="lead">Requested By: <a asp-controller="ProfilePosts" asp-action="Profile" asp-route-id="@Model.UserId">@Model.Author.FullName()</a></p>
+            <hr class="my-4">
+            <p id="f-topic">"@Model.Topic"</p>
+            <p id="p-body">@Model.Body</p>
+            <p>Status: <button class="btn btn-warning">Wanted</button></p>
+    </div>
+
+
+    <h3>
+      Jump into the #FamDiscussion about @Model.Author.FullName()'s request for @Model.ProductName
+    </h3>
+
+    @foreach (ProductPost productpost in ViewBag.AllProductPostsForThisPostId){
+            <div class="container">
+              <div class="row">
+                      <div class="col">
+                          <div class="card mb-3" style="max-width: 1080;">
+                          <div class="row no-gutters">
+                              <div class="col-md-4">
+                              </div>
+                              <div class="col-md-8">
+                              <div class="card-body">
+                                  <p class="card-text">@productpost.ForumMsg</p>
+                                  <p class="card-text"><small class="text-muted">Last updated @productpost.UpdatedAt</small>
+                                  <p>
+                                    Posted By: @productpost.Author.FullName()
+                                  </p>
+                                  <a 
+                                              asp-controller="ProductPosts"
+                                              asp-action="Edit"
+                                              asp-route-id="@productpost.ProductPostId"
+                                              class="btn btn-warning">
+                                              Edit
+                                          </a>
+                                          <a 
+                                              asp-controller="ProductPosts"
+                                              asp-action="Delete"
+                                              asp-route-id="@productpost.ProductPostId"
+                                              class="btn btn-danger">
+                                              Delete
+                                          </a></p>
+                              </div>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+              </div>
+  </div>
+    }
+</body>

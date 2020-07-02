@@ -1,0 +1,42 @@
+#title {
+    padding-top: 20px;
+    color: rgb(251, 255, 0);
+    text-align: center;
+    font-size: 25px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+#forum_msg {
+    color: blue;
+    font-size: 15px;
+}
+
+.img {
+    width: 305px;
+    height: 175px;
+}
+
+#url-input {
+    width: 650px;
+}
+
+#msg-input {
+    width: 800px;
+    height: 75px;
+}
+
+.label1 {
+    font-size: medium;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    color: rgb(251, 255, 0);
+}
+
+#userlink {
+    color: purple;
+}

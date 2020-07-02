@@ -1,0 +1,42 @@
+@model ForumPost
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/ForumStyleSheet.css" type="text/css">
+</head>
+
+<form asp-controller="ForumPosts" asp-action="Create" method="POST" >
+
+<div class="col-md-8">
+      <div class="form-group">
+        <label class="label1" >Get in on the #FamDicussion!</label>
+        <span
+          class="text-danger font-weight-bold"
+          asp-validation-for="ForumMsg"
+        >
+        </span>
+        <textarea id="msg-input" asp-for="ForumMsg" >
+        </textarea>
+      </div>
+</div>
+
+  <div class="form-group">
+    <h1>
+      <label class="label1" >Post A Pix URL !</label>
+    </h1>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="ImgUrl"
+    >
+    </span>
+    <input id="url-input" asp-for="ImgUrl" />
+  </div>
+
+
+    <div class="mt-3">
+        <a asp-controller="ForumPosts" asp-action="FamForum" class="btn btn-primary">Cancel</a>
+        <button class="btn btn-success">Submit</button>
+    </div>
+</form>

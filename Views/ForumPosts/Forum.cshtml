@@ -1,0 +1,64 @@
+@using ForTheFamApp.Models
+@model List<ForumPost>
+
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/ForumStyleSheet.css" type="text/css">
+</head>
+<body>
+
+
+<h1 id="title" >#FamDiscussionForum </h1>
+
+        @foreach (ForumPost forumPost in Model)
+        {
+        <div class="container">
+                    <div class="row">
+                            <div class="col">
+                                <div class="card mb-3" style="max-width: 1080;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        @if (forumPost.ImgUrl != null)
+                                        {
+                                        <img class="img" src="@forumPost.ImgUrl" alt="Post">
+                                        }
+                                    </div>
+                                    <div class="col-md-8">
+                                    <div class="card-body">
+                                        <p id="forum_msg" class="card-text">@forumPost.ForumMsg</p>
+                                        <p class="card-text"><small class="text-muted">Last updated @forumPost.UpdatedAt</small>
+                                        <p id="userlink" >Posted By: <a asp-controller="ProfilePosts" asp-action="Profile" asp-route-id="@forumPost.UserId">@forumPost.Author.FullName()</a></p>
+                                        <a 
+                                                    asp-controller="ForumPosts"
+                                                    asp-action="Edit"
+                                                    asp-route-id="@forumPost.ForumPostId"
+                                                    class="btn btn-warning">
+                                                    Edit
+                                                </a>
+                                                <a 
+                                                    asp-controller="ForumPosts"
+                                                    asp-action="Delete"
+                                                    asp-route-id="@forumPost.ForumPostId"
+                                                    class="btn btn-danger">
+                                                    Delete
+                                                </a></p>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+        </div>
+        }
+
+
+</body>
+@{
+    ForumPost newForumPost = new ForumPost();
+}
+
+    <partial name="_NewForumPost" model="newForumPost"></partial>

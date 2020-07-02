@@ -1,0 +1,32 @@
+#postdiv {
+    height: 100px;
+}
+
+#postdiv {
+    justify-content: space-between;
+}
+
+#imgdiv {
+    width: 75px;
+    height: 75px;
+    text-align: right;
+
+}
+
+h2 {
+    color: rgb(251, 255, 0);
+    text-align: center;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+#commentButton {
+    float: right;
+    padding-bottom: 10px;
+}
+
+#cont {
+    width: 750px;
+}

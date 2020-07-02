@@ -1,0 +1,63 @@
+@model Post
+@{
+  int? uid = Context.Session.GetInt32("UserId");
+}
+
+<h2 class="text-center">Amazon Product Request</h2>
+
+<form asp-action="Create" asp-controller="Posts" method="POST">
+  <div class="form-group">
+    <label asp-for="Topic"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="Topic"
+    >
+    </span>
+    <input class="form-control" asp-for="Topic" />
+  </div>
+
+  <div class="form-group">
+    <label asp-for="ProductName"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="ProductName"
+    >
+    </span>
+    <input class="form-control" asp-for="ProductName" />
+  </div>
+
+  <div class="form-group">
+    <label asp-for="AmazonProductUrl"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="AmazonProductUrl"
+    >
+    </span>
+    <input class="form-control" asp-for="AmazonProductUrl" />
+  </div>
+
+
+  <div class="form-group">
+    <label asp-for="Body"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="Body"
+    >
+    </span>
+    <textarea class="form-control" asp-for="Body"></textarea>
+  </div>
+
+
+  <div class="form-group">
+    <label asp-for="ImgUrl"></label>
+    <span
+      class="text-danger font-weight-bold"
+      asp-validation-for="ImgUrl"
+    >
+    </span>
+    <input class="form-control" asp-for="ImgUrl" />
+  </div>
+
+
+  <button class="btn btn-primary">Post It!</button>
+</form>

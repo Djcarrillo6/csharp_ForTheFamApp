@@ -1,0 +1,31 @@
+h3 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.actions {
+    text-align: center;
+    color: yellow;
+}
+
+#dash-body {
+    background-color: cornflowerblue;
+}
+
+h1 {
+    color: rgb(251, 255, 0);
+    text-align: center;
+}
+
+#post-b1 {
+    background-color: rgb(251, 255, 0);
+
+}
+
+#post-b2 {
+    background-color: rgb(251, 255, 0);
+
+}
+
+#wrapper {
+    background-color: cornflowerblue;
+}
